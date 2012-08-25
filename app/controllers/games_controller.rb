@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before :load_game, except: :create
+  before_filter :load_game, except: :create
 
   def create
     user = User.create(email: params[:email])
@@ -15,15 +15,14 @@ class GamesController < ApplicationController
   end
 
   def shoot
-    @judge.judge_shoot params[:x], params[:y]
-    render json: {shoot: {goal: @judge.goal?}}
+    @judge.judge_shoot params[:x], params[:y], params[:role]
+    result = {
+      shoot: {goal: @judge.goal?},
+      game: {ended: @game.ended?, winner: @game.winner}
+    }
+    render json: result
   end
   
-  def safe
-    @judge.judge_safe params[:x], params[:y]
-    render json: {shoot: {goal: @judge.goal?}}
-  end
-
   private
   def load_game
     errors = {}
