@@ -15,13 +15,14 @@ class Judge
       serie.b_goal = @shoot.goal?
       serie.b_shooted = true
     end
+    serie.save!
     @game.toggle_role
     check_if_game_ended()
     @game.save!
   end
 
   def goal?
-    @shoot.result
+    @shoot.goal?
   end
 
   def check_if_game_ended

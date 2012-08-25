@@ -14,9 +14,9 @@ class Game
 
 
   validates :player_a, :player_b, presence: true
-  #validates :next_role, inclusion: {in: %w(shoot safe)}
+  validates :next_role, inclusion: {in: %w(shoot safe)}
 
-  #before_validation :random_role, on: :create
+  before_validation :random_role, on: :create
 
 
   def self.oposite_role(role)

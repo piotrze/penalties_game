@@ -8,7 +8,7 @@ class GamesController < ApplicationController
     game = Game.new(player_a: user, player_b: dummy_user)
 
     if game.save
-      render json: {game: {id: game.id}}
+      render json: {game: {id: game.id, next_role: game.next_role}}
     else
       render json: {errors: game.errors}, status: :not_acceptable
     end
@@ -28,7 +28,7 @@ class GamesController < ApplicationController
     errors = {}
     @game = Game.find(params[:id])
     errors[:game] = {ended: 'already ended'} if @game.ended
-    errors[:game] = {role: 'invalid'} if @game.next_role != params[:action]
+    errors[:game] = {role: 'invalid'} if @game.next_role != params[:role]
     
     if errors.empty?
       @judge = Judge.new(@game)

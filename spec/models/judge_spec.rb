@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'ruby-debug'
 
 describe Judge do
   let(:judge) { Judge.new(Fabricate(:game))}
