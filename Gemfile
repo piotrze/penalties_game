@@ -5,7 +5,7 @@ gem 'mongo', '=1.6.2'
 gem 'bson', '~> 1.6.2'
 gem 'bson_ext', '~> 1.6.2'
 gem 'rails', '3.2.1'
-gem 'therubyracer'
+
 gem 'haml-rails'
 
 group :assets do
@@ -13,6 +13,7 @@ group :assets do
   gem 'less-rails'
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
+  gem 'therubyracer'
 end
 
 gem 'jquery-rails'
